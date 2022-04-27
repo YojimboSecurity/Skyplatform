@@ -7,7 +7,7 @@ package cmd
 import (
 	"fmt"
 	"os"
-
+	"text/tabwriter"
 	"Skyplatform/pkg"
 
 	bubbleSpin "github.com/charmbracelet/bubbles/spinner"
@@ -35,11 +35,16 @@ var environmentsCmd = &cobra.Command{
 			fmt.Println(err)
 			os.Exit(1)
 		}
+		tw := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
+		fmt.Fprintln(tw, "Configuration Id\tName")
+		fmt.Fprintln(tw, "----------------\t----")
 		for _, v := range resp.([]interface{}) {
 			name := v.(map[string]interface{})["name"]
 			id := v.(map[string]interface{})["id"]
-			fmt.Println(id, name)
+			// fmt.Println(id, name)
+			fmt.Fprintf(tw, "%s\t%s\n", id, name)
 		}
+		tw.Flush()
 	},
 }
 
