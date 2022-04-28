@@ -26,7 +26,8 @@ to quickly create a Cobra application.`,
 		fmt.Println("test called")
 		client := pkg.NewClient()
 		resp := interface{}(nil)
-		api.GetSkytapResource(*client, "GET https://cloud.skytap.com/v2/configurations/122243460/vms/122243460/interfaces/1/services.json", resp)
+		api.GetEnvironment()
+		api.RunSkytapRequest(*client, , &resp)
 	},
 }
 
