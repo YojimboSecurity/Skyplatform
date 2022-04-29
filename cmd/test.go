@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"Skyplatform/pkg"
+	"Skyplatform/log"
 	"fmt"
 
 	"github.com/skytap/skytap-sdk-go/api"
@@ -25,9 +26,22 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("test called")
 		client := pkg.NewClient()
-		resp := interface{}(nil)
-		api.GetEnvironment()
-		api.RunSkytapRequest(*client, , &resp)
+		//resp := interface{}(nil)
+		env ,err := api.GetEnvironment(*client, "122243460")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(env.Runstate)
+		vm, err := api.GetVirtualMachine(*client, "90540245")
+		if err != nil {
+			log.Error(err)
+		}
+		fmt.Println(vm.Runstate)
+		vm, err = vm.Stop(*client)
+		if err != nil {
+			log.Error(err)
+		}
+		fmt.Println(vm.Runstate)
 	},
 }
 

@@ -1,6 +1,10 @@
 # Environment
 
 This document describes the environment command, its purpose, and how to use it.
+In Skytap an environment can be a single virtual machine or a collection of
+virtual machines. For example, you can create an environment that contains a
+Windows Server VM and several Windows client VMs. Each of these VMs can be run
+in isolation or in a cluster.
 
 ## Purpose
 
@@ -46,7 +50,8 @@ Or if you only want to see the information about the virtual machines networks.
 Or even more granularly if you want to see the information about the virtual
 machines networks interfaces and what IP addresses, public IP addresses, and
 published services are assigned to them. One may just want to see the
-environment state
+environment state. One may also want to start, stop, suspend, or kill one or all
+of the virtual machines in the environment.
 
 Environment example:
 
