@@ -5,23 +5,24 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"Skyplatform/pkg"
 	"fmt"
 	"os"
 	"text/tabwriter"
-	"Skyplatform/pkg"
 
+	"github.com/YojimboSecurity/skytap-sdk-go/api"
 	bubbleSpin "github.com/charmbracelet/bubbles/spinner"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/skytap/skytap-sdk-go/api"
 	"github.com/spf13/cobra"
 )
 
 var configurationId string
+
 // environmentCmd represents the environment command
 var environmentCmd = &cobra.Command{
 	Use:   "environment",
 	Short: "Display environment information",
-	Long: `Display environment information.`,
+	Long:  `Display environment information.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if configurationId == "" {
 			fmt.Println("Please provide a configuration id")
@@ -47,7 +48,7 @@ func init() {
 }
 
 // getEnvironmentInfo gets the environment information
-func getEnvironmentInfo(configurationId string) interface{} { 
+func getEnvironmentInfo(configurationId string) interface{} {
 	URL := fmt.Sprintf("https://cloud.skytap.com/v2/configurations/%s.json", configurationId)
 	p := tea.NewProgram(pkg.SpinnerModel(bubbleSpin.Pulse, "205"))
 	client := pkg.NewClient()

@@ -3,7 +3,7 @@ package pkg
 import (
 	"os"
 
-	"github.com/skytap/skytap-sdk-go/api"
+	"github.com/YojimboSecurity/skytap-sdk-go/api"
 )
 
 func NewClient() *api.SkytapClient {

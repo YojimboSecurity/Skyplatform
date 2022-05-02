@@ -19,11 +19,3 @@ var GoVersion = runtime.Version()
 
 // OsArch returns the os and arch used to build the binary
 var OsArch = fmt.Sprintf("%s %s", runtime.GOOS, runtime.GOARCH)
-
-
-// Profile returns if wether or not the profiler is turned on
-var Profile = "off"
-
-// ProfileType returns the type of profile used CPU or MEM
-var ProfileType = "CPU"
-

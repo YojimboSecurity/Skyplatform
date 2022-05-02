@@ -5,23 +5,22 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"Skyplatform/pkg"
 	"fmt"
 	"os"
 	"text/tabwriter"
-	"Skyplatform/pkg"
 
+	"github.com/YojimboSecurity/skytap-sdk-go/api"
 	bubbleSpin "github.com/charmbracelet/bubbles/spinner"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/skytap/skytap-sdk-go/api"
 	"github.com/spf13/cobra"
 )
-
 
 // environmentsCmd represents the environments command
 var environmentsCmd = &cobra.Command{
 	Use:   "environments",
 	Short: "List all virtual environments",
-	Long: `List all available virtual environments.`,
+	Long:  `List all available virtual environments their Ids and their names.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		p := tea.NewProgram(pkg.SpinnerModel(bubbleSpin.Pulse, "205"))
 		client := pkg.NewClient()
