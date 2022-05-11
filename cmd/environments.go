@@ -8,6 +8,7 @@ import (
 	"Skyplatform/pkg"
 	"fmt"
 	"os"
+	"strings"
 	"text/tabwriter"
 
 	"github.com/YojimboSecurity/skytap-sdk-go/api"
@@ -35,13 +36,18 @@ var environmentsCmd = &cobra.Command{
 			os.Exit(1)
 		}
 		tw := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
-		fmt.Fprintln(tw, "Configuration Id\tName")
-		fmt.Fprintln(tw, "----------------\t----")
+		fmt.Fprintln(tw, "Configuration Id\tName\tVM Ids")
+		fmt.Fprintln(tw, "----------------\t----\t------")
 		for _, v := range resp.([]interface{}) {
 			name := v.(map[string]interface{})["name"]
 			id := v.(map[string]interface{})["id"]
+			vm := v.(map[string]interface{})["vms"]
+			vmId := []string{}
+			for _, v := range vm.([]interface{}) {
+				vmId = append(vmId, fmt.Sprintf("%s", v.(map[string]interface{})["id"]))
+			}
 			// fmt.Println(id, name)
-			fmt.Fprintf(tw, "%s\t%s\n", id, name)
+			fmt.Fprintf(tw, "%s\t%s\t%v\n", id, name, strings.Join(vmId, ", "))
 		}
 		tw.Flush()
 	},

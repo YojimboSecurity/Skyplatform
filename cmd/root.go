@@ -17,9 +17,7 @@ var rootCmd = &cobra.Command{
 
 This tool is designed to be used for automating the creation and management of
 Skytap virtual environments.`,
-	Run: func(cmd *cobra.Command, args []string) { 
-		
-	},
+	// Run: func(cmd *cobra.Command, args []string) {},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
